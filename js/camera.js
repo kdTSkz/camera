@@ -19,8 +19,10 @@
                 let constraints = {
                     audio: false,
                     video: {
-                        width: container.clientWidth,
-                        height: container.clientHeight
+//                         width: container.clientWidth,
+//                         height: container.clientHeight
+                        width: container.clientHeight,
+                        height: container.clientWidth
                     }
                 };
 
