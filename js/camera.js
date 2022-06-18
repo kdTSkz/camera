@@ -1,11 +1,7 @@
 (function () {
 
     document.addEventListener("DOMContentLoaded", function () {
-        videoDevice().then(function (video) {
-            video.addEventListener("click", function () {
-                if (videoDevices.length > 1) changeDevice();
-            });
-        });
+        videoDevice()
     });
 
     let videoTrack = null;
@@ -27,13 +23,6 @@
                         height: container.clientHeight
                     }
                 };
-                
-                alert(container.clientWidth + "\n" + container.clientHeight);
-
-                // if (container.clientWidth < container.clientHeight) {
-                //     constraints.video.width = container.clientHeight;
-                //     constraints.video.height = container.clientWidth;
-                // }
 
                 if (typeof deviceId === "undefined") {
                     constraints.video.facingMode = "environment";
@@ -67,36 +56,6 @@
 
             } else {
                 resolve(video);
-            }
-        });
-
-        return promise;
-    };
-
-    const changeDevice = function () {
-
-        let promise = new Promise(function (resolve, reject) {
-
-            let video = document.getElementById("video");
-
-            if ((videoDevices === null) || (videoDevices.length < 2)) {
-
-                reject(video);
-
-            } else {
-
-                let deviceId = videoTrack.getSettings().deviceId;
-                let index = videoDevices.findIndex(function (d) { return d.deviceId == deviceId; }) + 1;
-
-                if (index >= videoDevices.length) {
-                    index = 0;
-                }
-
-                videoTrack.stop();
-
-                return videoDevice(videoDevices[index].deviceId).then(function (v) {
-                    resolve(v);
-                });
             }
         });
 
