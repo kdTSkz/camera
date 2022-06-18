@@ -27,6 +27,8 @@
                         height: container.clientHeight
                     }
                 };
+                
+                alert(container.clientWidth + "\n" + container.clientHeight);
 
                 // if (container.clientWidth < container.clientHeight) {
                 //     constraints.video.width = container.clientHeight;
