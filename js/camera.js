@@ -19,12 +19,15 @@
                 let constraints = {
                     audio: false,
                     video: {
-//                         width: container.clientWidth,
-//                         height: container.clientHeight
-                        width: container.clientHeight,
-                        height: container.clientWidth
+                        width: container.clientWidth,
+                        height: container.clientHeight
                     }
                 };
+
+                if (container.clientWidth < container.clientHeight) {
+                    constraints.video.width = container.clientHeight;
+                    constraints.video.height = container.clientWidth;
+                }
 
                 if (typeof deviceId === "undefined") {
                     constraints.video.facingMode = "environment";
