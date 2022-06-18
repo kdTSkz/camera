@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Camera</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" type="text/css" href="css/camera.css">
+
+    <script>
+        window.addEventListener("load", function () {
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.register("/camera/sw.js").then(function (registration) {
+                    console.log("serviceWorker registed.");
+                }).catch(function (error) {
+                    console.warn("serviceWorker error.", error);
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <main>
+        <video id="video"></video>
+    </main>
+    <script src="js/camera.js"></script>
+</body>
+
+</html>
