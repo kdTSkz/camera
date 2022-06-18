@@ -1,12 +1,18 @@
 @charset "UTF-8";
 
-html, body, main, video {
+html, body, main {
     background-color: #000000;
     min-width: 100vw;
     min-height: 100vh;
     margin: 0;
     padding: 0;
     overflow: hidden;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 video.mirror {
