@@ -28,6 +28,11 @@
                     }
                 };
 
+                // if (container.clientWidth < container.clientHeight) {
+                //     constraints.video.width = container.clientHeight;
+                //     constraints.video.height = container.clientWidth;
+                // }
+
                 if (typeof deviceId === "undefined") {
                     constraints.video.facingMode = "environment";
                 } else {
