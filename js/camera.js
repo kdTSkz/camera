@@ -72,11 +72,9 @@
 
         let promise = new Promise(function (resolve, reject) {
 
-            let video = document.getElementById("video");
-
             if ((videoDevices === null) || (videoDevices.length < 2)) {
 
-                resolve(video, false);
+                resolve(document.getElementById("video"), false);
 
             } else {
 
@@ -89,8 +87,8 @@
 
                 videoTrack.stop();
 
-                videoDevice(videoDevices[index].deviceId).then(function (v) {
-                    resolve(v, true);
+                videoDevice(videoDevices[index].deviceId).then(function (video) {
+                    resolve(video, true);
                 });
             }
         });
