@@ -1,7 +1,8 @@
 (function () {
 
     document.addEventListener("DOMContentLoaded", function () {
-        videoDevice()
+        videoDevice();
+        document.addEventListener("click", changeDevice);
     });
 
     let videoTrack = null;
@@ -66,5 +67,35 @@
 
         return promise;
     };
+
+    const changeDevice = function () {
+
+        let promise = new Promise(function (resolve, reject) {
+
+            let video = document.getElementById("video");
+
+            if ((videoDevices === null) || (videoDevices.length < 2)) {
+
+                resolve(video, false);
+
+            } else {
+
+                let deviceId = videoTrack.getSettings().deviceId;
+                let index = videoDevices.findIndex(function (d) { return d.deviceId == deviceId; }) + 1;
+
+                if (index >= videoDevices.length) {
+                    index = 0;
+                }
+
+                videoTrack.stop();
+
+                videoDevice(videoDevices[index].deviceId).then(function (v) {
+                    resolve(v, true);
+                });
+            }
+        });
+
+        return promise;
+    }
 
 })();
