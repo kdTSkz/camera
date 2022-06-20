@@ -17,3 +17,7 @@ video {
 video.mirror {
     transform: rotateY(180deg);
 }
+
+video.rotate {
+    transform: rotateX(180deg);
+}
