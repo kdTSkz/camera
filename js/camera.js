@@ -86,25 +86,38 @@
 
         let promise = new Promise(function (resolve, reject) {
 
-            if ((videoDevices === null) || (videoDevices.length < 2)) {
+            let video = document.getElementById("video");
 
-                resolve(document.getElementById("video"), false);
+                if (video.classList.contains("rotate")) {
 
-            } else {
+                    video.classList.remove("rotate");
 
-                let deviceId = videoTrack.getSettings().deviceId;
-                let index = videoDevices.findIndex(function (d) { return d.deviceId == deviceId; }) + 1;
+                    if ((videoDevices === null) || (videoDevices.length < 2)) {
 
-                if (index >= videoDevices.length) {
-                    index = 0;
-                }
+                        resolve(video, false);
 
-                videoTrack.stop();
+                    } else {
 
-                videoDevice(videoDevices[index].deviceId).then(function (video) {
+                        let deviceId = videoTrack.getSettings().deviceId;
+                        let index = videoDevices.findIndex(function (d) { return d.deviceId == deviceId; }) + 1;
+
+                        if (index >= videoDevices.length) {
+                            index = 0;
+                        }
+
+                        videoTrack.stop();
+
+                        videoDevice(videoDevices[index].deviceId).then(function (video) {
+                            resolve(video, true);
+                        });
+                    }
+
+                } else {
+
+                    video.classList.add("rotate");
+
                     resolve(video, true);
-                });
-            }
+                }
         });
 
         return promise;
