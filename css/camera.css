@@ -19,5 +19,5 @@ video.mirror {
 }
 
 video.rotate {
-    transform: rotateX(180deg);
+    transform: rotate(180deg);
 }
